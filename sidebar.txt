@@ -1,0 +1,5 @@
+  * [[start]]
+  * [[yudit_prednaska_01_pocitac_informace|1. počítač, informace]]
+  * [[yudit_prednaska_02_hardware|2. hardware]]
+  * [[yudit_prednaska_03_operacni_systemy|3. operační systémy]]
+  * [[yudit_prednaska_04_pocitacove_site|4. počítačové sítě]]

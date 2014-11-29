@@ -1,0 +1,719 @@
+Hardware
+Jiří Zacpal
+
+DEPARTMENT OF COMPUTER SCIENCE
+PALACKÝ UNIVERSITY, OLOMOUC
+KMI/YUDIT Úvod do informačních technologií
+
+======Osnova======
+  * Kontrolní kódy
+  * Hardware
+  * Skříň
+  * Sběrnice
+  * Základní deska
+  * Procesor
+  * Paměť
+  * Vstupní a výstupní zařízení
+
+
+======Literatura======
+  * J. Hronek: Struktura počítačů
+  * P. Tišnovský: Seriál Co se děje v počítači (http://www.root.cz/serialy/co-se-deje-v-pocitaci/)
+
+
+======Kontrolní kódy======
+
+======Kontrolní kódy======
+  * kódy, které s příslušnou pravděpodobností zajišťují kontrolu přenášených informací
+  * metody:
+  * Grayův kód
+  * Kódy p z n
+  * Kontrola paritou
+
+
+======Grayův kód======
+  * Zrcadlový binární kód, známý také jako Grayův kód
+podle Franka Graye, je binární číselná soustava, ve
+které se každá dvě po sobě jdoucí čísla liší v jediné
+číslici.
+  * Zrcadlový binární kód byl původně navržen pro
+zabránění rušivého výstupu z elektromechanických
+přepínačů (hazardy relé).
+  * Dnes je Grayův kód používán pro podporu opravy
+chyb v digitální komunikaci jako je digitální pozemní
+televize a některé systémy kabelové televize.
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+KMI/YUDIT Úvod do informačních technologií
+
+Binárně
+…0
+…1
+…10
+…11
+…100
+…101
+…110
+…111
+…1000
+…1001
+…1010
+…1011
+…1100
+…1101
+…1110
+…1111
+
+Grayův kód
+…0
+…1
+…11
+…10
+…110
+…111
+…101
+…100
+…1100
+…1101
+…1111
+…1110
+…1010
+…1011
+…1001
+…1000
+
+6
+
+======Kódy p z n======
+  * mají kódové slovo s délkou n bitů, z nichž p
+bitů jsou jedničky a je jich konstantní počet,
+ostatní bity jsou nuly
+  * tyto kódy jsou kontrolní, protože je v nich
+možno detekovat chybu
+
+Kód 2 z 5
+
+8
+
+4
+
+2
+
+1
+
+0
+
+0
+
+1
+
+1
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+1
+
+1
+
+2
+
+0
+
+0
+
+1
+
+0
+
+1
+
+3
+
+0
+
+0
+
+1
+
+1
+
+0
+
+4
+
+0
+
+1
+
+0
+
+0
+
+1
+
+5
+
+0
+
+1
+
+0
+
+1
+
+0
+
+6
+
+0
+
+1
+
+1
+
+0
+
+0
+
+7
+
+1
+
+0
+
+1
+
+0
+
+0
+
+8
+
+1
+
+0
+
+0
+
+0
+
+1
+
+9
+
+1
+
+0
+
+0
+
+1
+
+0
+
+KMI/YUDIT Úvod do informačních technologií
+
+7
+
+======Kontrola paritou======
+  * Nejpoužívanějším způsobem kontroly správnosti přenášených dat po sběrnici nebo při záznamu a čtení z
+paměti je kontrola paritou.
+  * Při této kontrole se používá detekční kód vytvořený tak, že se k bitům zobrazujícím data připojí další, paritní bit.
+  * Když počet jedniček v takto vzniklém kódu je sudý, jde o sudou paritu.
+  * Při lichém počtu jedniček jde o lichou paritu.
+  * Paritní bit p, označovaný také jako příčná parita (VRC), umožňuje detekovat v každém kódovém slově lichý počet chyb.
+  * Při přenosu bloku slov je možno na konci bloku vytvořit další kontrolní znak, znak podélné parity (LRC).
+  * V LRC je hodnota každého bitu vypočtena jako parita všech bitů v příslušném sloupci bloku.
+  * Kontrola příčnou a podélnou paritou umožňuje lokalizaci a opravu jedné chyby v bloku a detekci všech
+dvojic a trojic chyb.
+
+
+======Hammingův kód======
+  * Samoopravný kód
+  * Hammingův kód (n,d)
+  * n bitů ve slově
+  * d bitů nese informace
+  * n – d paritních bitů
+  * Platí vztahy:
+  * Detekce k chyb: d>=k+1
+  * Oprava k chyb: d>=2*k+1
+d
+detekce
+1
+0
+2
+1
+3
+2
+4
+3
+5
+4
+
+oprava
+0
+0
+1
+1
+2
+
+
+======Algoritmus Hammingova kódu======
+  * Algoritmus pro generování Hammingova kódu:
+1. Všechny bitové pozice, jejichž číslo je rovné mocnině 2, jsou použity pro paritní bit (1, 2, 4, 8, 16, 32,
+…).
+2. Všechny ostatní bitové pozice náleží kódovanému informačnímu slovu (3, 5, 6, 7, 9, 10, 11, 12, 13,
+14, 15, 17, …).
+3. Každý paritní bit je vypočítán z některých bitů informačního slova. Pozice paritního bitu udává
+sekvenci bitů, které jsou v kódovém slově zjišťovány a které přeskočeny.
+  * Pro paritní bit p1 (pozice 1) se ve zbylém kódovém slově 1 bit přeskočí, 1 zkontroluje, 1 bit přeskočí, 1 zkontroluje, atd.
+  * Pro paritní bit p2 (pozice 2) se přeskočí první bit, 2 zkontrolují, 2 přeskočí, 2 zkontrolují, atd.
+  * Pro p3 (pozice 4) se přeskočí první 3 bity, 4 zkontrolují, 4 přeskočí, 4 zkontrolují, atd.
+
+
+======Složení počítače======
+
+======Součásti počítače======
+
+
+
+
+
+
+
+
+Skříň
+Zdroj
+Základní deska
+Procesor
+Paměť
+Sběrnice
+Periférie
+  * Monitor
+  * Tiskárna
+  * Klávesnice a myš
+
+
+======Skříň======
+
+
+
+
+
+provedení: desktop, (mini/midi/big)tower, rackové,
+laptop/notebook, palmtop, embedded, atd.
+korespondence s rozměry základní desky (otvory pro zdroj, konektory, lišty pro přídavné karty)
+šachty pro mechaniky výměnných médií a karet (5,25’’, 3,5’’, PCMCIA) aj., tlačítka pro zapnutí a reset,
+signalizace a indikátory (detekce otevření, LED), konektory pro USB, audio aj.
+  * výrobci: Antec, AOpen, ASUS, Chieftec, Cooler Master, DFI, Ever Case, Foxconn a další
+
+
+======Zdroj napájení======
+  * zajišťuje el. napájení stejnosměrným proudem všech (vnitřních) součástí počítače
+  * typicky +3; 3,+-5,+-12 V, 300-800 W pro osobní počítače, 25-100 W pro laptopy,
+    více zdrojů (redundantních) pro servery a pracovní stanice, efektivita od 75 do 90 %
+  * korespondence s rozměry základní desky (konektory) a skříně, AT nebo ATX
+  * výrobci: Antec, Enermax, Foxconn a další
+
+
+======Základní deska======
+  * základní součást, ke které (na kterou) se připojují další zařízení, které propojuje: procesor(y), paměti,
+    přídavné karty, disková zařízení, periferie a další
+  * vícevrstvý obdélníkový plošný spoj s obvody propojujícími zařízení pomocí vnitřních sběrnic
+  * formáty (form factor):
+  * PC/XT (IBM) - první pro osobní počítače, de facto standard
+  * AT (IBM) – 305x 350 mm, varianta Baby
+  * ATX (Intel, 1995) - 244x305 mm, nejpoužívanìjší, varianty micro (244x244 mm), Extended, Flex, Ultra
+  * odpovídající skříň, různé konektory pro napájení od zdroje, různě rozmístění konektorů pro periferie
+  * výrobci: Aopen, ASRock, ASUS, Biostar, EPoX, Foxconn, Gigabyte Technology, Intel, Jetway, Micro-Star, Palit, Soyo, VIA a další
+
+
+======Sběrnice======
+  * soustava vodičů, která umožňuje přenos signálů mezi jednotlivými částmi počítače
+  * části sběrnice:
+  * Adresová
+  * slouží k výběru určité paměťové buňky nebo I/O zařízení
+  * většinou má šířku 16 – 40 bitů (určuje velikost paměti, s jakou je procesor schopen pracovat)
+  * Datová
+  * šířka určuje, kolik bitů lze najednou přenést mezi procesorem a pamětí
+  * většinou 8 až 64 bitů
+  * obvykle vnitřní i vnější datová sběrnice má stejnou délku
+  * podle šířky se mluví o osmibitových procesorech, šestnáctibitových procesorech, ...
+  * Řídící
+  * jejím prostřednictvím předává procesor povely ostatním zařízením a přijímá stavové a řídící
+informace z okolí
+  * počet řídících signálů bývá pro různé procesory různý (10 až 100)
+
+======Dělení sběrnic======
+  * dle umístění:
+  * vnitřní: na základní desce (součást jejích obvodů),
+  * vnější (rozhraní): k diskovým zařízením a periferiím,
+  * dle funkce
+  * adresová - výběr adresy v paměti nebo zařízení na sběrnici, šířka 8 až 64 bitů - určuje, s jak velkou
+    pamětí nebo s kolika zařízeními lze (přímo) pracovat
+  * datová - přenos dat po sběrnici, šířka 1 až 128 bitů, udává „bitovost" sběrnice
+  * řídící - řízení zařízení na sběrnici pomocí řídících a stavových informací, šířka 1 až 8 bitù - urèuje poèet řídících signálů a stavů
+  * dle způsobu přenosu
+  * Paralelní
+  * Sériová
+  * další dělení
+  * Lokální
+  * Universální
+
+
+======Standardy sběrnic======
+  * ISA - starší typ pasivní sběrnice, šířka 8 nebo 16 bitů, přenosová rychlost < 8 MB/s
+  * PCI - novější typ „inteligentní“ sběrnice, šířka 32 nebo 64 bitů, burst režim, přenosová rychlost < 130 MB/s (260 MB/s)
+  * AGP - jednoúčelová sběrnice určená pro připojeni grafického rozhraní (karty) k systému, přenosová rychlost 260 MB/s - 2 GB/s
+  * PCI-Express (PCIe) - nová sériová implementace sběrnice PCI
+  * USB - sériová polyfunkční sběrnice
+  * 1.1 přenosová rychlost 12 Mb/s (~1,43 MB/s),
+  * 2.0 přenosová rychlost 480 Mb/s (~57 MB/s),
+  * 3.0 přenosová rychlost 4800 Mb/s (~572 MB/s)
+  * FireWire - sériová polyfunkční sběrnice, široké použití, 50 MB/s
+
+
+======Čipová sada (chipset)======
+  * integrované obvody (s pasivním chladičem) na základní desce pro řízení pamětí a sběrnic, propojení procesoru, sběrnic a připojení dalších zařízení
+  * konstruované pro konkrétní typy a počty/množství procesorů a pamětí
+  * severní můstek, systémový řadič (north bridge, memory controller hub)
+  * propojuje procesorovou sběrnici (procesor, paměti) s vnitřními sběrnicemi (AGP, PCI Express) a jižním můstkem (můstky, interní sběrnice)
+  * obsahuje např. řadič operační paměti (dříve, dnes součást procesoru), řadič cache paměti = vyrovnávací paměti mezi různě rychlými zařízeními (na frekvenci rychlejšího), např. procesorem a operační pamětí
+
+======Čipová sada (chipset)======
+  * jižní můstek, vstupně/výstupní řadič (south bridge, I/O controller hub)
+  * propojuje severní můstek a vnitřní sběrnice (PCI, PCI Express) s vnějšími, příp. se sběrnicí ISA
+  * obsahuje např. řadič diskových zařízení a polí, řadiè DMA (Direct Memory Access, umožnění přímého
+    přístupu zařízení do operační paměti), řídící obvody vnějších sběrnic a rozhraní a připojení BIOSu
+    (sběrnice LPC k čipu Super I/O), integrované karty
+  * výrobci: Intel, AMD, NVidia, VIA Technologies, SiS a další
+
+
+======BIOS======
+  * Basic Input Output System
+  * program poskytující základní nízkoúrovňové služby: start počítače, vstupní (obsluha klávesnice, myši),
+výstupní (text, graka), dále např. datum a čas, správa napájení, síťové
+  * rozhraní mezi hardwarem a operačním systémem
+  * umožňuje základní konfiguraci hardwaru počítače (tzv. SETUP): zapnutí/vypnutí zařízení, základní nastavení
+zařízení (parametrů, přiřazení zdrojů - přerušení, DMA kanály, vstupní/výstupní adresy, přiřazený paměťový
+rozsah aj.), zařízení pro zavedení operačního systému
+  * firmware uložený v paměti ROM (Flash EEPROM) na základní desce
+  * konfigurační data v paměti CMOS RAM zálohované baterií
+  * výrobci: Award, Phoenix, Ami
+
+
+======Mikroprocesor======
+
+======Mikroprocesor======
+
+
+======Registry======
+  * paměťové buňky, které slouží procesoru pro ukládání mezivýsledků výpočtů
+  * druhy registrů:
+  * Univerzální registry
+  * lze je volně používat pro aritmetické a logické operace
+  * Intel 8086: AX, BX, CX, DX
+  * Indexové a ukazatelové registry
+  * tyto registry se nejčastěji používají pro adresaci dat
+  * Intel 8086: SP (ukazatel zásobníku), BP (ukazatel báze), SI (index zdrojové adresy), DI (index cílové adresy)
+  * Programový čítač
+  * tento registr obsahuje offsetovou část adresy následující programové instrukce
+  * Intel 8086: IP (Instruction Pointer)
+  * Příznakový registr
+  * obsahuje jednobitové indikátory, které určují okamžitý stav mikroprocesoru.
+
+======Přerušení======
+  * metoda pro asynchronní obsluhu událostí, kdy procesor přeruší vykonávání sledu instrukcí, vykoná obsluhu
+  * přerušení a pak pokračuje v předchozí činnosti
+druhy:
+  * Vnější přerušení (též hardwarové přerušení)
+  * je označováno podle toho, že přichází ze vstupně-výstupních zařízení (tj. z pohledu procesoru přicházejí z vnějšku).
+  * vstupně-výstupní zařízení tak má možnost si asynchronně vyžádat pozornost procesoru a zajistit tak svoji obsluhu ve chvíli,
+    kdy to právě potřebuje bez ohledu na právě zpracovávanou úlohu.
+  * Vnitřní přerušení
+  * vyvolává sám procesor, který tak signalizuje problémy při zpracování strojových instrukcí a umožňuje
+    operačnímu systému na tyto události nejvhodnějším způsobem zareagovat
+  * jedná se například o pokus dělení nulou, porušení ochrany paměti, nepřítomnost matematického koprocesoru, výpadek stránky a podobně.
+  * Softwarové přerušení
+  * je speciální strojová instrukce
+  * tento typ přerušení je na rozdíl od druhých dvou typů synchronní, je tedy vyvoláno zcela záměrně
+    umístěním příslušné strojové instrukce přímo do prováděného programu
+  * instrukce softwarového přerušení se proto využívá pro vyvolání služeb operačního systému z běžícího procesu (tzv. systémové volání).
+
+
+======Metody zvýšení výkonu procesoru======
+  * zvýšení taktovacího kmitočtu procesoru,
+  * zvýšení bitové šířky dat,
+  * zavedení vyrovnávací paměti a front instrukcí,
+  * zřetězené zpracování instrukcí (pipelining),
+  * superskalární architektura
+
+
+======Paměť cache======
+  * rychlá vyrovnávací paměť
+  * slouží k ukládání dat při přesunu mezi různě rychlými částmi počítače
+  * druhy:
+  * L1 (First Level Cache)
+  * je integrována přímo do procesoru
+  * slouží k dočasnému ukládání dat ve směru ze sběrnice do procesoru
+  * L2 (Second Level Cache)
+  * pro zrychlení přesunů mezi mikroprocesorem a operační pamětí
+  * zpravidla je uložena na základní desce nebo v pouzdře procesoru
+
+
+======Instrukční sada======
+  * množina všech instrukcí procesoru, pevně zabudována (dnes upravitelná/rozšiřitelná)
+  * CISC (Complete Instruction Set Computer) - tzv. úplná instrukční sada, všechny možné déle trvající
+instrukce, u osobních počítačů navenek procesoru, např. Intel, AMD
+  * RISC (Reduced ISC) - redukovaná instrukční sada, jen několik základních jednoduchých rychlých instrukcí,
+ostatní složitější jsou složeny ze základních, např. IBM Power PC, u osobních počítačů interně u novějších
+procesorů Intel, AMD
+  * instrukce přesunu (mezi registry, operační pamětí), aritmetické, logické (log. operace, posuvy, rotace),
+skoku, vstupně/výstupní (pro práci s periferiemi), ostatní (řídící aj.), a další
+
+
+======Procesory Intel======
+vedoucí výrobce procesorů pro osobní počítače, od 1972 i další (IBM,
+AMD, Cyrix)
+4004 (1971) - první, 4-bitový, 108 kHz, 2 300 tranzistorů
+8008 (1972), 8080 (1974), 8088 (1979) - 8-bitové, 2-5 MHz, 6-29 tis. tranzistorů
+8086 (1978) - 1. 16-bitový
+80286 (1982) - 16-bitový, 24-bitová adresová, až 12 MHz, 130 tis. tranzistorů
+  * reálný režim - po inicializaci procesoru, podle 8086
+  * chráněný režim - zapnutí instrukcí z reálného (bez možnosti zpět), stránkování paměti (stránky = kusy
+fyzické paměti) a virtuální paměť, adresace až 16 MB fyzické operační paměti a 1 GB virtuální, 4 úrovně
+ochrany programu (Ring 0 až 3)
+
+
+======Procesory Intel======
+  * 80386 (1985) - 1. 32-bitový, vnější 16 MHz, 280 tis. tranzistorů,
+  * verze SX (do základních desek pro 16-bitový 80286), DX, segmentace paměti (segmenty = oblasti virtuální
+paměti programu s různými právy), 32-64 kB L2 cache na základní desce
+  * 8087, 80287, 80387SX, 80487SX - matematické koprocesory, na základní desce vedle procesoru
+  * 80486 (1989) - vnější 25 MHz, 1,2 mil. tranzistorů, verze SX (vylepšený 80386, 8 kB L1 cache), DX, DX/2
+(dvojnásobná vnitřní frekvence), DX/4 (trojnásobná), integrovaný matematický koprocesor, pipelining =
+více rozpracovaných instrukcí zároveň
+  * Pentium (1993) - 64-bitový (vnitřně 32!), 32-bitová adresová, vnější 60 MHz, 3.1 mil. tranzistorů, 16 kB L1
+(8 kB pro instrukce, 8 kB pro data, harvardská koncepce), rysy RISC instrukèní sady, superskalární
+architektura = více (2) proudů vykonávání instrukcí, umožňuje provádět více (2) instrukcí současně, 2 ALU,
+„předvídání„ cílové adresy instrukcí podmíněných skoků, klony AMD K5, Cyrix M1
+
+
+======Procesory Intel======
+  * Pentium MMX (MultiMedia eXtension), MMX2 - až 200 MHz, 57 a 70 instrukcí pro zpracování
+multimediálních dat (s opakujícími se smyčkami, paralelní vykonávání, s plovoucí řádovou čárkou, využití
+registrů FPU), architektura SIMD (Single Instruction Multiple Data, paralelní zpracování dat), data
+zpracovávána po 64 bitech
+  * Pentium Pro (P6, 1995) - 36-bitová adresní část sběrnice, druhý čip v pouzdře pro 256 kB až 1 MB L2
+cache, RISC jádro, 5 paralelních jednotek (2 ALU, 2 sběrnicové, 1 FPU)
+  * Pentium II (1997) - od 233 MHz, vnější 100 MHz, 7,5 mil. tranzistorů, nové pouzdro (S.E.C.) do slotu Slot 1,
+verze Xeon pro servery a pracovní stanice (vyšší výkon), Mobile (M) pro notebooky (nižší spotřeba)
+  * Celeron - vnější 66 MHz, bez L2 cache -> pomalý, od verze 300A 128 kB L2 cache, pouzdro (PPGA) do
+patice Socket 370 (existuje redukce na Slot 1)
+
+
+======Procesory Intel======
+  * Pentium III (1999) - od 400 MHz, vnější až 133 MHz, 9,5 mil. tranzistorů, dvě výrobní technologie (0,25 a
+0,18 mikrometru vyšší výkon, nižší spotřeba, 1,6 V místo 2 V), integrovaná 256kB L2 cache na čipu, 70
+nových instrukcí SSE (Streaming SIMD Extensions) pro 3D
+  * Pentium 4 (2000) - od 1,3 GHz, vnější 400 a 533 MHz (technologie DualBus - dvojice paměťových karet),
+42 mil. tranzistorů, nové jádro, architektura NetBurst - vyšší frekvence, ale i spotřeba (potřeba zdroje ATXP4 s přídavným konektorem), další cache (např. Execution Trace Cache pro dekódované makroinstrukce),
+dalších 144 instrukcí SSE2 pro plovoucí řádovou čárku, verze HT (HyperThreading) - zdvojené registry,
+simulace dvou procesorů
+  * Itanium (2001) - 1. plně 64-bitový, instrukční sada IA-64 (Itanium), pro servery a pracovní stanice
+  * Core (2006) - vícejádrové, sdílená až 2/6MB L2 cache, verze Solo, Duo (32-bitové), Core 2 (64-bitové), Duo,
+Quad (2 cache), Extreme, i3/5/7/9 (až 12 MB L3 cache)
+
+
+======Paměť======
+
+======Paměť======
+  * Vnitřní paměť - k uchování informace používají tranzistory a kondenzátory, jedná se tedy o integrované obvody.
+  * registry procesoru,
+  * vyrovnávací paměť procesoru,
+  * operační paměť
+  * ROM
+  * RAM
+  * virtuální paměť
+  * Vnější paměti - jsou založeny na magnetickém nebo optickém principu
+  * hard disk (HDD)
+  * CD, DVD, Blueray disky
+
+
+======Vnitřní paměť======
+  * typy:
+  * ROM
+  * pouze pro čtení
+  * PROM – prázdné, lze je jednorázově naplnit
+  * EPROM – lze je vymazat (např. působením ultrafialového záření)
+  * Flash-ROM – programovatelné přímo v PC
+  * RAM
+  * paměti s náhodným přístupem
+
+
+======Paměti RAM======
+  * DRAM
+  * dynamická paměť RAM
+  * konstrukčně je tato paměť velmi jednoduchá, je složena z párů kondenzátor-tranzistor
+  * aby nedošlo ke ztrátě informace, musí být náboj periodicky obnovován
+
+  * SRAM
+  * statická paměť
+  * vzájemného propojení až šesti tranzistorů
+  * rychlejší než DRAM, ale dražší
+
+
+======Pevný disk======
+  * Parametry:
+  * Technologie: HDD, SSD
+  * Velikost: 2,5‘‘, 3,5‘‘
+  * Kapacita
+  * Počet otáček
+  * Vyrovnávací paměť
+  * Rozhraní: SATA, IDE
+
+
+======Geometrie pevných disků======
+
+
+
+
+
+disk je rozdělen do soustředných kružnic – stop (track)
+každá stopa se dělí na sektory
+množina všech stop na všech discích se stejným číslem se označuje jako válec (cylinder)
+geometrie disku udává :
+  * hlavy disku (heads) – počet čtecích hlav pevného disku
+  * stopy disku (tracks) – počet stop na každé aktivní ploše disku
+  * cylindry disku (cylinders) – počet cylindrů pevného disku
+
+
+======Řadiče pevných disků======
+
+
+
+
+funkce:
+  * zajišťuje čtení a zápis dat na pevný disk
+  * se sběrnicí zajišťuje přenos dat mezi diskem a procesorem
+typy:
+  * IDE (PATA)
+  * navržen pro sběrnici ISA
+  * integrován přímo na mechanice disku
+  * spojení se základní deskou pomocí karty ISA
+  * na kartu lze připojit dvě zařízení (MASTER-SLAVE)
+  * SATA
+  * vyšší rychlost oproti IDE
+  * možnost připojování disků za chodu systému (tzv. Hot Swap)
+  * menší rozměry kabelů
+
+
+SCSI
+
+
+
+
+
+kvalitnější, ale dražší řešení
+každá jednotka má vlastni řadič
+používá se u serverů
+
+
+======Ostatní součásti počítače======
+
+======Mechaniky======
+  * CD/DVD:
+  * Média: BlueRay, DVD+-, CD
+  * Rychlost zápisu a čtení
+  * Rozhraní
+  * Disketová
+  * Čtečka karet
+  * Druh karet
+
+
+======Karty======
+  * Grafická:
+  * Rozhraní (AGP, PCIe)
+  * Čip
+  * Velikost paměti
+  * Zvuková
+  * Síťová
+  * TV
+
+
+======Vstupně výstupní zařízení======
+
+======Vstupní zařízení======
+
+
+
+
+
+polohovací zařízení (počítačová myš)
+klávesnice
+scanner
+...
+
+
+======Monitor======
+  * Parametry
+  * Uhlopříčka: 15‘‘-24‘‘
+  * Rozlišení
+  * Jas a kontrast
+  * Odezva
+  * Rozhraní (VGA, DVI-I, HDMI, ...)
+
+
+======Tiskárna======
+  * Druh
+  * Jehličková
+  * Inkoustová
+  * multifunkční
+  * připojení
+  * Laserová
+  * barevná, černobílá
+  * multifunkční
+
+
+======Podrobnější informace======
+  * J. Hronek: Struktura počítačů
+  * P. Tišnovský: Seriál Co se děje v počítači (http://www.root.cz/serialy/co-se-deje-v-pocitaci/)
+  * http://phoenix.inf.upol.cz/~outrata/courses/udit/syllabus.html
+
+
+======Příště======
+• Operační systém a jeho funkce při ovládání počítače, z uživatelského i administrátorského pohledu.
+Struktura a funkce operačního systému (správa procesů, paměti a disku) .
+  * Studijní texty:
+  * A. Keprt: Operační systémy (http://phoenix.inf.upol.cz/esf/ucebni/OpSys.pdf)
+  * uvt_2_kapitola_operacni_systemy.pdf (Vyuka\KMI_UVT\vyukovy_text)
+  * http://phoenix.inf.upol.cz/~outrata/courses/udit/syllabus.html
+
+
+============

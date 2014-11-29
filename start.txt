@@ -1,0 +1,45 @@
+Předmět je úvodem do studia technologicky zaměřených oblastí informatiky.
+
+Požadavky na studenta Ústní zkouška zvládnutí učiva z přednášek.
+
+======Obsah======
+Předmět seznamuje studenty se strukturou, součástmi, základními
+principy a technologiemi počítačů, operačních, databázových a
+informačních systémů a počítačových sítí. Závěr předmětu je věnován
+základním uživatelským a kancelářským aplikacím. Probírané technologie
+a aplikace jsou rovněž prakticky ukazovány.
+  * Co je to počítač, historie vývoje počítačů. Architektura počítače (von
+Neumannova) a princip jeho činnosti. Číselné soustavy, boolova
+algebra, logické funkce a obvody. Reprezentace čísel a znaků.
+
+  * Základní deska počítače a interní sběrnice počítače (PCI). Princip činnosti mikroprocesoru ([[cs>CPU]]) a vnitřních pamětí (RAM, cache).
+
+  * Interní součásti počítače, přídavné karty (grafická, zvuková, síťová, multimediální), vnější paměti (pevné disky a disková pole).
+
+  * Periferie a externí sběrnice počítače (USB). Monitor (CRT, LCD), polohovací zařízení (klávesnice, myš aj.), datové mechaniky a média (floppy, CD, DVD), tiskárna a skener, modem.
+
+  * Operační systém a jeho funkce při ovládání počítače, z uživatelského i administrátorského pohledu.
+
+  * Struktura a funkce operačního systému (správa procesů, paměti a disku).
+
+  * Počítačové sítě, technologie a principy fungování.
+
+  * Celosvětová síť Internet a její služby.
+
+  * Základy databázových systémů a zpracování dat.
+
+  * Úvod do informačních systémů a webových technologií.
+
+  * Základní uživatelské aplikace (soubory, síť, multimédia, příslušenství).
+
+  * Kancelářské aplikace, tvorba dokumentů (textový procesor), tabulek (tabulkový procesor) a prezentací.
+
+======Literatura======
+  * Oppel A. Databáze bez předchozích znalostí. Computer Press, 2006. [[isbn>80-251-1199-7]]
+  * Kosek J. HTML, tvorba dokonalých WWW stránek, podrobný průvodce. Grada Publishing, 1998. [[isbn>80-7169-608-0]]
+  * Silberschatz A., Galvin P.B., Gagne G. Operating System Concepts. Seventh Edition. John Wiley & sons, 2005. [[isbn>0-471-69466-5]]
+  * Lapáček J. Počítač v kanceláři. Computer press, 2006. [[isbn>8025112098]]
+  * Kállay F., Peniak P. Počítačové sítě LAN/MAN/WAN a jejich aplikace (2. vydání). Grada, 2003. [[isbn>80-247-0545-1]]
+  * Hronek J., Mazura J. Struktura počítačů. Učební text. Katedra informatiky, UP Olomouc, 2007.
+  * Messmer H.-P., Dembowski K. Velká kniha počítačového hardware. CP Books, 2005. [[isbn>8025104168]]
+  * [[peterka:start|Jiří Peterka]]

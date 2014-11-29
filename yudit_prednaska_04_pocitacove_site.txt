@@ -1,0 +1,737 @@
+Počítačové sítě
+Jiří Zacpal
+
+DEPARTMENT OF COMPUTER SCIENCE
+PALACKÝ UNIVERSITY, OLOMOUC
+KMI/YUDIT Úvod do informačních technologií
+
+======Osnova======
+  * Počítačová síť
+  * Síťová architektura
+  * Popis jednotlivých vrstev
+  * Aplikační programy
+
+======Literatura======
+  * P. Příhoda: Počítačové sítě
+  * Andrew S. Tanenbauma Computer Networks.
+  * Jiří Peterka: Báječný svět počítačových sítí (http://www.earchiv.cz/i_serial.php3)
+    * honza: aktuální Peterka viz [[peterka:]]
+
+======Počítačová síť======
+
+======Počítačová síť======
+  * počítačová síť = skupina vzájemně propojených počítačů a dalších zařízení
+    (hostitelských/koncových uzlů), komunikujících pomocí prvků síťové infrastruktury:
+  * přenosová/propojovací média: metalické vodiče a optická vlákna = „drát“,
+    elektromagnetické (rádiové) vlny = „bezdrát“
+  * aktivní a pasivní propojovací prvky: opakovače, přepínače, směrovače, brány aj.
+  * přenosová rychlost udává množství dat, které se po síti přenesou za určitou časovou jednotku (Mb/s, Gb/s)
+  * přenosový výkon udává množství „užitečných“ dat, které se po síti přenesou za určitou časovou jednotku
+
+======Taxonomie počítačových sítí======
+
+======Typy počítačových sítí======
+  * Sítě serverového typu
+  * V takovéto síti existuje hlavní počítač, nazývaný server, který ostatním počítačům, které se nazývají klienti, poskytuje služby.
+  * Peer to peer
+  * Každý počítač v síti může poskytovat služby jiným počítačům.
+
+======Podle rozlehlosti======
+  * Osobní počítačová síť (PAN)
+  * propojení zařízení, příp. k počítači, s umožněním vzájemné komunikace a přenosu dat
+  * charakterem LAN
+  * omezeny dosahem, v okolí zařízení (jednotky až desítky m, nejčastěji „kolem osoby“)
+  * Lokální počítačová síť (LAN)
+  * propojení koncových uzlů s umožněním vzájemné komunikace a přenosu dat
+  * lokální = omezeny rozsahem (jednotky km, nejčastěji v budově nebo komplexu budov),
+  * Metropolitní počítačová síť (MAN)
+  * propojení a „prodloužení“ několika LAN, účelem přenosové sítě, charakterem lokální v rámci města (desítky km)
+  * Rozlehlá počítačová síť (WAN)
+  * přenosové sítě propojující LAN/MAN (páteřní sítě)
+  * velké vzdálenosti, pokrývají území států a kontinentů (neomezené)
+
+======Topologie počítačových sítí======
+  * Topologie - logické uspořádání počítačů (příp. jiných zařízení) v síti
+  * Fyzická topologie - popisuje reálnou konstrukci sítě, zapojená zařízení a jejich umístění včetně instalovaných kabelů
+  * Logická topologie se vztahuje k tomu, jak jsou data v síti přenášena a kudy protékají z jednoho zařízení do druhého.
+    Nemusí nutně kopírovat fyzické schéma sítě.
+  * Topologie:
+  * hvězdicová
+  * kruhová
+  * sběrnicová
+  * stromová
+zdroj: Wikipeida
+======Síťová architektura======
+
+======Síťová architektura======
+  * vrstva – každá vrstva plní specifické úkoly
+  * služba – každá vrstva poskytuje službu vyšší vrstvě a sama využívá služby vrstvy nižší
+  * protokol – pravidla komunikace mezi stejnolehlými vrstvami
+
+zdroj: J. Peterka – Báječný svět počítačových sítí
+======Služby======
+  * Služby mohou být:
+  * Spojované. Ty si můžete představit jako klasické volání telefonem. Abyste mohli
+    s někým komunikovat, musíte vytočit jeho číslo a počkat, až volaný telefon zvedne.
+    Tím je navázáno spojení a vy můžete komunikovat.
+  * Nespojované. Tyto služby se podobají klasické poště. Vy na dopis napíšete pouze
+    adresu a předáte poště. Dopis pak putuje z jedné pošty na druhou až k příjemci.
+  * Každá služba podle spolehlivosti může být:
+  * Spolehlivou službou (Reliable Service), kdy je zaručeno dodání dat adresátovi.
+  * Nespolehlivou službou (Unreliable Service), kdy odesilatel neví, zda data adresátovi došla.
+
+======Referenční model ISO OSI (Open Systems Interconnection)======
+  * propojení otevřených systémů = zařízení podporujících příslušné normy
+  * obecně platné principy implementace systémů (abstrakce síťové architektury)
+
+zdroj: J. Peterka - Principy počítačových sítí
+======Referenční model ISO OSI======
+Fyzická vrstva
+  * úkolem je fyzický přenos dat = přenos jednotlivých bitů a bitových sekvencí
+  * úkoly:
+  * jakým způsobem jsou datové bity zakódovány do takového signálu, jaký se skutečně přenáší
+  * jaký je časový průběh tohoto signálu
+  * jaké jsou obvodové vlastnosti přenosových cest apod
+  * vyšší vrstvě nabízí služby typu „přijmi bit" a „odešli bit"
+
+======Referenční model ISO OSI======
+Linková vrstva
+  * má za úkol přenášet celé bloky dat (obecně označované jako rámce), a to mezi sousedními počítači
+  * úkoly:
+  * vyznačit začátek a konec každého rámce
+  * zajištění spolehlivosti přenosu
+  * správné dodržování „tempa" přenosu - tedy toho, aby příjemce stačil přijímat všechno to, co mu odesilatel posílá
+  * vyšší vrstvě nabízí nabízí služby typu „odešli rámec sousednímu uzlu", resp. „přijmi rámec od sousedního uzlu„
+  * vrstva obsahuje dvě podvrstvy:
+  * LLC, která zajišťuje přenos dat a jejich kontrolu.
+  * MAC, která řeší problémy s přístupem ke sdílené přenosové lince
+======Referenční model ISO OSI======
+Síťová vrstva
+  * má za úkol zajistit doručení bloku dat - paket, uzlu, se kterým není přímé spojení, ale
+    pouze spojení nepřímé, vedoucí přes jeden nebo několik přestupních uzlů
+  * musí „znát" celou topologii sítě a je schopna stanovit, kudy (přes které přestupní uzly)
+    má být daný paket postupně přenášen, tak aby se nakonec dostal k cíli
+  * úkoly:
+  * rozhoduje o tom, kudy (jakou cestou) budou postupně přenášena data = „směrování" (routing)
+  * směrování může vycházet z různých filosofií a může používat různé algoritmy pro hledání nejvhodnějších cest od příjemce k odesilateli
+  * vyšší vrstvě nabízí přenos bloku dat na libovolný počítač v síti
+
+======Referenční model ISO OSI======
+Transportní vrstva
+  * má za úkol vyrovnávat rozdíly mezi schopnostmi tří spodních přenosových vrstev a požadavky tří vyšších, aplikačně orientovaných vrstev
+  * úkoly:
+  * z nespolehlivých přenosových služeb, jaké nabízí přenosový subsystém tvořený třemi
+    nejnižšími vrstvami, vyrobila spolehlivou službou, jakou požadují horní, aplikačně orientované vrstvy
+  * zajišťuje komunikaci koncových uzlů
+  * zařídí předání dat konkrétnímu příjemci v rámci daného uzlu
+
+======Referenční model ISO OSI======
+Relační vrstva
+  * má za úkol řízení a průběh relací
+  * relace - „dialog“ mezi spolupracujícími relačními vrstvami obou systémů
+  * úkoly:
+  * řídit výměnu dat
+  * vytvoření a ukončení relační spojení
+  * synchronizaci a obnovení spojení
+  * oznamovaní výjimečných stavů
+
+======Referenční model ISO OSI======
+Prezentační vrstva
+  * úkolem je konverze přenášených dat tak, aby je obě strany shodně interpretovaly
+  * úkoly:
+  * linearizace dat pro potřeby přenosu
+  * kódování znaků a čísel
+
+======Referenční model ISO OSI======
+Aplikační vrstva
+  * účelem vrstvy je poskytnout aplikacím přístup ke komunikačnímu systému a umožnit tak jejich spolupráci
+  * v aplikační vrstvě jsou části aplikací související se síťovou komunikací
+
+======Referenční model TCP/IP======
+  * použití v síti Internet (největší celosvětová síť propojených heterogenních sítí)
+  * nejpoužívanější síťová architektura
+  * všechny informace (konvence, protokoly, doporučení) v RFC (Request For Comments) od IAB (rada pro architekturu Internetu),
+    de facto normy IETF (komise s pracovními skupinami Internetu)
+
+zdroj: J. Peterka – Báječný svět počítačových sítí
+
+======Přenosové cesty======
+
+======Koaxiální kabely======
+  * tlustý - ∅ 1 cm, max. 500 m, zakončený terminátory 50 Ω, připojení uzlu přes transceiver napíchnutý svorkou vampír, redukce i na tenký a dvojlinku
+  * tenký - max. 185 m (u stejných síťových karet uzlů až 400 m), zakončený terminátory 50 Ω, připojení přes BNC konektor
+  * sběrnicová topologie
+
+zdroj: J. Peterka - Principy počítačových sítí
+
+======Kroucená dvoulinka======
+  * max. 100 m (závisí na kvalitě kabelu)
+  * 4 páry měděných vodičů
+  * varianty
+  * stíněná (STP)
+  * nestíněná (UTP)
+  * kategorie
+  * Cat 3 (šířka pásma do 25 MHz) – 10 Mbps až 10 Mbps
+  * Cat 5(E) (do 100 MHz) –100 Mbps až 1 Gbps
+  * Cat 6 (do 250 MHz) – 1 Gbps až 10 Gbps sítě
+  * Cat 7 (do 600 MHz) – 10 Gbps sítě
+
+======Optické vlákno======
+  * dvě vrstvy skla: obal a jádro
+  * druhy
+  * vícevidové (∅ 50 a 62.5 µm, paprsky se odráží od rozhraní skel)
+  * jednovidové (9 µm), buzení laserem (850, 1300, 1500 nm)
+  * dosah 2–3 km (vícevidové) nebo až 70 km (jednovidové),
+
+zdroj: J. Peterka - Principy počítačových sítí
+
+======Bezdrátové přenosy======
+  * radiové
+  * jejich dosah může být relativně velký
+  * mohou prostupovat budovami
+  * šíření je všesměrové
+  * mikrovlné
+  * přímočaré šíření
+  * nutná přímá viditelnost
+  * infračervené
+  * na velmi krátkou vzdálenost
+  * neprostupují překážkami
+  * optické spoje
+  * laserové
+  * výhodou velká šířka přenosového pásma
+  * nevýhodou je silná závislost na povětrnostních vlivech
+
+======Přenosové techniky======
+
+======Druhy přenosu======
+  * simplex - k přenosu dochází jen v jednom směru, a nikoli ve směru druhém
+  * duplex - takový, který může probíhat v obou směrech, a to i současně
+  * poloduplex - takový, který může probíhat v jednom nebo druhém směru, ale nikdy ne současně
+
+======Synchronizace přenosu======
+  * bitový interval = doba „trvání“ přenosu jednoho bitu
+  * nutnost synchronizace v čase
+  * asynchronní přenos
+  * odesilatel sdělí příjemci, kdy začíná a kdy končí každý jednotlivý interval
+  * arytmický přenos
+  * data se nepřenáší jako libovolně dlouhé posloupnosti bitů, ale jako skupinky bitů pevně dané velikosti (například 8 bitů)
+  * na začátek každé takovéto skupinky se pak umístí zvláštní značka, která příjemci umožní „seřídit si" jeho hodinky
+  * synchronní přenos
+  * mezi příjemcem a odesilatelem dochází k udržování vzájemné koordinace hodinek (přenosem „tikání“ hodinek, smícháním signálu hodinek a dat, ...)
+
+
+======Multiplexování======
+  * logické rozdělení fyzické cesty
+  * frekvenční multiplex – analogový signál se „posunul do vhodné frekvenční polohy“
+  * časový multiplex - digitálně fungující přenosová cesta je pravidelně, podle předem známého a
+    definovaného postupu, přidělována jednotlivým dílčím kanálům, na předem známé a definované časové úseky
+  * statistický multiplex - kapacitu společné přenosové cesty přiděluje podle momentální potřeby
+zdroj: J. Peterka - Principy počítačových sítí
+======Propojování přenosových cest======
+  * přepojování okruhů
+  * dochází k vytvoření souvislého přenosového kanálu mezi komunikujícími stranami
+  * přepojování paketů
+  * přenášena jsou data členěna na bloky (pakety)
+  * jednotlivé pakety od různých odesilatelů a určené různým příjemcům se přenáší společným přenosovým kanálem
+
+======Ethernet======
+
+======Ethernet======
+  * sdílené přenosové médium, v daném okamžiku využívá jeden uzel
+  * uzly samostatné, rovnocenné
+  * počátky koncem 70. let Xerox, 1982 DEC, Intel a Xerox jako DIX Ethernet (Ethernet II), 1985 IEEE 802.3
+  * přístupová metoda CSMA/CD
+  * „příposlech“ – zjištění, zda se na přenosovém médiu komunikuje
+  * detekce kolizí
+
+======„Klasický“ Ethernet======
+  * přenosová rychlost 10 Mb/s
+  * s koaxiálním kabelem
+  * tlustý (10Base5): tlustý koaxiální kabel, topologie sběrnice, max. 100 stanic
+  * tenký (10Base2): tenký koaxiální kabel, topologie sběrnice, max. 30 stanic
+  * s kroucenou dvojlinkou (10BaseT)
+  * konektor RJ45 na síťové kartě
+  * hvězdicová topologie,
+  * max. 100 m mezi počítačem a opakovačem
+  * s vícevidovými optickými vlákny (10BaseFx)
+  * původně jen propojení optických opakovačů, max. 2 km
+
+======Fast Ethernet======
+  * přenosová rychlost 100 Mb/s
+  * 1993 sítě 100BaseT a 100VG-AnyLAN, z důvodu zpětné kompatibility u metody přístupu k médiu vybrána 100BaseT
+  * jen hvězdicová topologie
+  * kroucená dvojlinka
+  * 100BaseTX – dva páry dvoulinky kategorie 5
+  * 100BaseT4 – čtyři páry dvoulinky kategorie 5
+  * max. 200 m
+  * optická vlákna (100BaseFX)
+  * max. 300 m (Full Duplex 2 km)
+
+======Gigabitový Ethernet======
+  * 1988 pro optické linky (IEEE 802.3z), pak pro kroucenou dvojlinku kategorie 5E (IEEE 802.3ab)
+  * 1 Gb/s
+  * jen hvězdicová topologie
+  * optická vlákna
+  * jednovidová 1000BaseLX – max. 2km
+  * vícevidová 1000BaseSX) max. 550 m
+  * kroucená dvojlinka (1000BaseT)
+  * duplexní přenos na všech 4 párech u kategorie 5E,
+  * plně duplexní přenos u kategorie 6, max. 100 m
+
+======10Gigabitový Ethernet======
+10 GB/s, velký dosah jen režim Full Duplex, ne sdílené médium fyzická rozhraní pro LAN a WAN optická vlákna
+  * mnohovidová 10GBaseS 400 m
+  * jednovidová 10GBase-L/E 10/40 km
+  * kroucená dvojlinka (10GBaseT)
+  * 55 m kabel kategorie 5E nebo 6
+  * 100 m 6A nebo 7
+
+======Formáty Ethernetových rámců======
+  * obsah rámce:
+  * 48bitové adresy (MAC adresa) příjemce a odesilatele
+  * EtherType – identifikace protokolu, který vlastní síťový paket
+  * délka rámce
+  * SAP - identifikaci konkrétní entity, která datový obsah vytvořila, resp.  má dále zpracovat (číslo tzv.  přechodového bodu mezi linkovou a
+    síťovou vrstvou, skrz který byla data převzata k odeslání, resp. mají být předána k dalšímu zpracování)
+  * síťový paket – data o velikosti 461500 B
+  * zabezpečení – kontrolní součet
+
+
+======Bezdrátové lokální sítě (WLAN) – Wi-Fi======
+  * důvody pro WLAN (Wireless LAN): mobilita, snadná použitelnost, dostupnost, nižší náklady,
+    rozšiřitelnost, roaming (vysílače si klienta předávají), atd., polovina 90. let
+  * použití pro vnitřní (původně, popř. v kombinaci s kabeláží) i vnější prostory (např.  připojení k Internetu), propojení s drátovými LAN
+  * norma IEEE 802.11 (1997)
+  * standardy
+TODO tabulka
+Maximální rychlost
+Standard
+
+Pásmo [GHz]
+
+původní IEEE 802.11
+
+2,4
+
+2
+
+IEEE 802.11a
+
+5
+
+54
+
+IEEE 802.11b
+
+2,4
+
+11
+
+IEEE 802.11g
+
+2,4
+
+54
+
+IEEE 802.11n
+
+2,4 nebo 5
+
+600
+
+IEEE 802.11ac
+
+2,4 nebo 5
+
+1800
+
+[Mbit/s]
+
+zdroj: Wikipedia
+======Wi-Fi======
+  * Konfigurace (topologie)
+  * ad-hoc - přímá komunikace mezi stanicemi
+  * infrastrukturní - stanice komunikují jen prostřednictvím přístupového bodu (AP) (nejdříve asociace a autorizace)
+  * Přenosové médium
+  * rádiové vlny
+  * 2,4 GHz (802.11b/g/n),
+  * 5 GHz (802.11a/n)
+zdroj: J. Peterka – Báječný svět počítačových sítí
+
+======Bezdrátové personální sítě (WPAN) – Bluetooth======
+  * projekt „Blue Tooth“, Ericsson, 1994,
+  * bezdrátová komunikace mezi různorodými zařízeními (počítače, mobilní telefony, PDA, dig. fotoaparáty, kamery aj.)
+  * rádiové vlny 2,4 GHz, přenosová rychlost 1 nebo 2 Mb/s, max. 10 m (s opakovači do 100 m)
+  * norma IEEE 802.15
+  * piconet – ad-hoc síť, kde jedna radiová stanice působí jako řídicí (master)
+    a může simultánně obsloužit až 7 podřízených (slave) zařízení (další jsou tzv. parkující)
+  * scatternet – vytvoří se, jestliže jeden slave je součástí více piconet
+  * komunikace po kanálech s pseudo-náhodnými skoky
+
+======Bluetooth======
+  * odlišná protokolová architektura
+  * fyzická (Bluetooth radio, podvrstvy Radio a Baseband)
+  * linková
+  * vyšší (identifikace a možnosti zařízení, podpora služeb, protokoly SDP, RFCOMM, TCS BIN, WAE/WAP)
+
+zdroj: http://flylib.com/
+
+======Propojování sítí======
+
+======Propojování sítí======
+  * důvody
+  * optimalizace provozu
+  * zvýšení dosahu
+  * ekonomické důvody
+  * bezpečnostní důvody
+  * propojování na různé úrovni
+  * fyzická
+  * linková
+  * síťová
+  * aplikační
+zdroj: J. Peterka - Principy počítačových sítí
+
+======Propojování na úrovni fyzické vrstvy======
+  * opakovače - zařízení si lze představit jako jednoduchý digitální zesilovač, který si všímá jednotlivých
+    přenášených bitů, ale jeho inteligence již nesahá tak daleko, aby chápal, co tyto bity znamenají
+  * počet opakovačů v Ethernetu
+  * maximálně dva opakovače mezi libovolnými uzly
+
+zdroj: J. Peterka - Principy počítačových sítí
+
+======Propojování na úrovni linkové vrstvy======
+  * propojovací zařízení – most (obvykle 2 porty, switch víceportové zařízení)
+  * pozná, která data „patří k sobě“, tj. tvoří jeden přenosový rámec
+  * rozumí formátu tohoto rámce
+  * odvodí si, od koho rámec pochází a komu je určen
+  * má vnitřní paměť pro uložení rámce
+  * adresování se učí automaticky z procházejícího provozu
+  * způsoby přeposílání rámců
+  * „store and forward“ - rámec z jednoho rozhraní přijmou, uloží si do vyrovnávací paměti,
+    prozkoumají jeho hlavičky, a následně odvysílají do příslušného rozhraní.
+  * „cut-through switching“ – k analýze hlaviček dochází, jakmile dorazí začátek rámce a poté se rámec ihned odesílá příjemci
+
+======Propojování na úrovni síťové vrstvy======
+  * směrovač (router)
+  * musí znát topologii celé sítě
+  * provádí směrování
+  * neadaptivní – nepřizpůsobuje se změnám v sítí
+  * adaptivní – reaguje na změny v síti
+  * je viditelný pro ostatní uzly
+
+zdroj: J. Peterka - Principy počítačových sítí
+
+======Internet======
+
+======Historie Internetu======
+  * počátky v USA, 50. léta 20. století
+  * snaha o vybudování decentralizované sítě odolné útoku
+  * Síť ARPANET
+  * finanční grant agentury ARPA (Advanced Research Projects Agency) ministerstva obrany USA
+  * síť založená na výměně paketů - nový přístup
+  * data jsou rozdělena do packetů
+  * jeden komunikační kanál může být v jednom okamžiku používán více počítači
+
+======ARPANET======
+  * původně používala komunikační protokol NCP (Network Control Program)
+  * ARPANET poskytoval tyto služby:
+  * e-mail
+  * přenos souborů
+  * přenos hlasu - předchůdce dnešního Voice over IP; nefungovalo dobře
+  * později byl NCP nahrazen TCP/IP
+  * rok 1988: uvolnění ARPANETu pro komerční účely
+
+======Internet v Česku======
+  * 13. února 1992, se Česká a Slovenská federativní republika oficiálně připojila k internetu
+  * první reálné internetové připojení s rychlostí 19,2 kb/s získalo ČVUT díky podpoře George Mellon Foundation
+  * fyzicky spojení mířilo z Prahy do Lince a kromě připojení k internetu sloužila linka k
+    využití další univerzitní sítě BITNET, která fungovala s využitím jiných technologií a spojovala přibližně 500 vysokých škol
+  * používané služby: e-mail, FTP, Gopher
+  * 1993 CESNET zahájil provoz české páteřní akademické sítě
+  * 2000 CESNET prodal komerční síť telekomunikačnímu operátorovi Contactel a o rok
+    později i díky utrženým 645 milionům korun zprovoznil síť CESNET 2 s rychlostí jeden gigabit
+  * 2010 CESNET v rámci akademické sítě testuje datové přenosy o rychlosti 100 gigabitů za sekundu
+
+======Referenční model TCP/IP======
+
+======Síťová vrstva======
+
+======Síťová vrstva======
+  * základním úkolem síťové vrstvy je doručení dat ve formě paketu do „vzdálenějších“ uzlů
+  * síťová vrstva musí vědět, jaká je topologie sítě (tj. množinu směrovačů a propojení mezi nimi) a podle ní vybrat vhodnou cestu = směrování
+
+linková vrstva
+
+síťová vrstva
+
+zdroj: J. Peterka – Báječný svět počítačových sítí
+======Směrování======
+  * hledání cesty ke koncovému příjemci
+  * směrování
+  * přímé
+  * přenos paket mezi dvěma uzly v rámci stejné sítě = předání linkové vrstvě
+  * nepřímé
+  * koncový příjemce se nenachází ve stejné síti, jako právě odesílající uzel
+  * postupného předávání paketu sousednímu uzlu (směrovači) tak dlouho, dokud se paket nedostane ke svému cíli
+
+zdroj: J. Peterka – Báječný svět počítačových sítí
+======Směrovací tabulky======
+  * směrovače si v nich udržují potřebné informace
+  * jsou v nich informace o cílové síti nikoliv o všech uzlech v těchto sítích
+  * směrování
+  * neadaptivní - obsah směrovacích tabulek (směrovačů) je dán apriorně a nemění se
+  * adaptivní - směrovací tabulky směrovačů jsou na počátku nějak nastaveny,
+    ale jejich obsah se průběžně aktualizuje, tak aby odrážel topologii soustavy sítí a reagoval na její změny
+
+======Druhy směrování======
+  * centralizované - rozhodování o volbě nejvhodnější cesty provádí jeden centrální prvek
+  * izolované - rozhodují jednotlivé směrovače, aniž by přitom spolupracovaly s ostatními
+  * záplavové směrování
+  * směrování metodou horké brambory
+  * náhodné směrování
+  * metoda zpětného učení
+  * distribuované - celé rozhodování je rozděleno (distribuováno) mezi jednotlivé uzly, které na něm spolupracují
+  * vector-distance - sousední směrovače si mezi sebou vyměňují celé své směrovací tabulky,
+    i s jejich obsahem (tyto údaje se používají pro vlastní výpočet vzdálenosti uzlů)
+  * link-state - každý směrovač uzel rozešle při změně do sítě informaci o tom,
+    kdo jsou jeho sousedé a zda jsou pro něj dosažitelní (zda spojení mezi nimi funguje)
+
+======IP protokol======
+  * poskytuje „nespolehlivou“ nespojovanou službu – nevytváří spojení, nepotvrzuje příjem paketů
+  * spojuje lokální sítě do celosvětové sítě Internet
+  * síťové rozhraní uzlu má alespoň jednu síťovou IP adresu
+
+======IP paket (datagram)======
+  * základní jednotka dat přenášených IP
+  * záhlaví 20 B povinných položek + volitelné položky, data, max. délka 64kB
+
+zdroj: http://zam.opf.slu.cz/
+======IP adresa======
+  * 32bitové číslo, zapisované po jednotlivých bajtech, oddělených tečkami, např.  192.168.48.39
+  * brzy vzniká problém s vyčerpáním IP adres
+  * 32bitová IP adresa dovoluje identifikovat 2^32=4 294 967 296 síťových rozhraní
+  * řešení:
+  * rozdělení na třídy (Two-level Classful Hierarchy)
+  * rozdělení na subsítě (Subset Address Hierarchy)
+  * dynamické přidělování adres
+======Třídy IP adres (1)======
+  * adresní prostor je proto rozdělen do tříd A, B, C
+  * IP adresa je rozdělena na adresu sítě a na adresu rozhraní
+  * každá třída definuje, která část adresy určuje síť a která rozhraní
+  * třídu určuje prefix IP adresy
+  * prefix pak vymezuje interval přípustných hodnot 1. bytu
+
+======Třídy IP adres (2)======
+  * Třída A
+  * prefix 0, první byte: 0-127
+  * 27-2=126 sítí (dvě adresy sítě jsou rezervované)
+  * 224-2=16 777 214 rozhraní (dvě adresy rozhraní jsou rezervované)
+  * adresy této třídy jsou již vyčerpané
+  * Třída B
+  * prefix 10, první byte: 128-191
+  * 214-2=16 382 sítí
+  * 216-2=65 534 rozhraní
+  * adresy této třídy používají např. univerzity
+  * Třída C
+  * prefix 110, první byte: 192-223
+  * 221-2=2 097 150 sítí
+  * 28-2=254 rozhraní
+  * adresy této třídy jsou nejběžnější
+======Podsítě======
+  * od roku 1993 se pak začal používat tzv. Classless Inter-Domain Routing (CIDR)
+  * adresa se skládá z:
+  * adresy subsítě
+  * adresy uzlu
+  * síťová maska - hranici mezi adresou sítě a počítače
+  * v binárním tvaru obsahuje
+    * 1 tam, kde se v adrese nachází subsíť,
+    * 0 tam, kde je uzel
+  * určení adresy sítě - bitový součin IP adresy a síťové masky
+  * počet uzlů v síti = 2 (počet 0 v masce) − 2
+  * notace sítě spolu s maskou - adresa sítě/maska, např. 158.194.0.0/255.255.0.0
+  * CIDR formát (Classless Inter-Domain Routing), např. 158.194.0.0/16
+
+======IP protokol verze 6======
+  * nahrazuje starý IPv4
+  * IP adresa je 128bitové číslo
+  * počet adres: 2128 (zhruba 3,4×1038) adres, což odpovídá počtu 5×1028 adres pro každého z 6,5 miliardy dnes žijících lidí
+  * IPv6 adresy s obvykle zapisují jako osm skupin čtyř hexadecimálních číslic 2001:0db8:85a3:08d3:1319:8a2e:0370:7334
+
+======Transportní vrstva======
+
+======Transportní vrstva======
+  * hlavním úkolem transportní vrstvy je zajišťovat vzájemnou komunikaci koncových uzlů
+  * první vrstvou, se kterou se setkáme pouze v koncových uzlech sítě, ale nikoli v jejích vnitřních uzlech
+  * první vrstva, která v rámci uzlu rozlišuje jednotlivé entity (procesy), prostřednictvím tzv.  portů
+
+======Protokoly======
+  * nejznámější Internetové protokoly v transportní vrstvě jsou:
+  * UDP (User Datagram Protocol) - je pouze jednouchou nadstavbou nad protokolem IP a funguje stejně jako on (tj. nespojovaně a nespolehlivě)
+  * TCP (Transmission Control Protocol) - je už složitější nadstavbou nad protokolem IP, a mění jeho způsob fungování - na spojitý a spolehlivý
+
+zdroj: J. Peterka – Báječný svět počítačových sítí
+
+======TCP======
+  * poskytuje spojovanou „spolehlivou" službu, řeší:
+  * navázání, udržování a ukončení spojení
+  * potvrzování přijetí dat (tzv. pozitivní potvrzování)
+  * vyžádání opakování přenosu ztracených nebo poškozených dat,
+  * zaručení správného pořadí bytů dat
+  * adaptivní přizpůsobení parametrů protokolu podle stavu spojení
+  * řízení toku dat pomocí bufferů a posuvného okna a průchodnosti přenosové cesty (zahlcení sítě)
+
+======UDP======
+  * poskytuje nespojovanou (datagramovou) „nespolehlivou" službu - data odeslána,
+    nezaručuje se doručení ani znovuzasílání ztracených nebo poškozených dat (ponecháno na vyšším protokolu)
+  * vyšší výkon a rychlost přenosu dat než u TCP, za cenu „nespolehlivosti"
+  * využití u streamování multimediálního obsahu
+  * oproti TCP může být příjemcem skupina uzlů, tj. IP adresa příjemce může být všesměrová
+    (např. u DHCP) nebo skupinová (multicast, typicky u streamování multimediálního obsahu)
+
+======Rozlišování jednotlivých příjemců a odesilatelů======
+  * transportní vrstva k adresování používá koncept, založený na představě „přechodových bodů“ mezi transportní vrstvou a vrstvou bezprostředně vyšší
+  * přechodové body jsou obecně obousměrné (lze si je představit jako dvě samostatné fronty s opačným "směrem")
+  * v prostředí TCP/IP se přechodové body nazývají porty
+
+zdroj: J. Peterka – Báječný svět počítačových sítí
+
+======Dobře známé porty======
+  * portům, jejichž význam je dopředu stanoven, se v TCP/IP říká dobře známé porty
+  * jde obecně o porty v rozsahu od 0 do 1023
+  * příslušnou konvenci spravuje orgán jménem IANA (Internet Assigned Numbers Autority)
+
+tabulka
+PORT #
+
+POPIS
+
+21
+
+FTP
+
+23
+
+Telnet
+
+25
+
+SMTP
+
+69
+
+TFTP
+
+70
+
+Gopher
+
+80
+
+HTTP
+
+110
+
+POP3
+
+143
+
+IMAP
+
+======DNS======
+
+======DNS======
+  * hierarchický systém doménových jmen, který je realizován servery DNS a protokolem stejného jména, kterým si vyměňují informace.
+  * hlavním úkolem a příčinou vzniku jsou vzájemné převody doménových jmen a IP adres uzlů sítě
+  * doménové jméno, např.  www.upol.cz
+    * kořenová doména (0. řádu)
+    * domény nejvyšší úrovně (TLD, 1. řádu)
+    * domény k-tého řádu
+    * hostitel
+
+======Doménová jména======
+1. řádu (Top-level Domains - TLD):
+  * generické domény (gTLD), např.:
+  * edu ... vzdělávací instituce
+  * com ...komerční sféra
+  * net ... síťové instituce
+  * gov ... vláda USA
+  * org ... ostatní instituce
+  * domény státních území (ccTLD), např.:
+  * cz ... Česká republika
+  * eu ... Evropská unie
+  * uk ... Velká Británie
+  * fr ... Francie
+  * us ... USA
+  * domény 1. řádu přiděluje ICANN (Internet Corporation for Assigned Names and Numbers)
+  * za přidělování domény 2. řádu je zodpovědný správce dané domény 1. řádu, atd.
+======DNS servery======
+DNS služba je založena na architektuře klient/server ... klient žádá DNS server o překlad symbolického jména na IP adresu
+DNS servery:
+  * Autoritativní
+  * jsou na něm trvale uloženy záznamy k dané doméně/zóně
+  * je jich obvykle více (minimálně dva - primární a sekundární, ale běžně i více)
+  * jsou obvykle provozovány registrátorem domény nebo poskytovatelem webhostingu.
+  * Rekurzivní (caching only) server
+  * na server se se svými dotazy obracejí klientská zařízení (počítač, mobil aj.)
+  * server pro ně příslušný záznam získá rekurzivními dotazy u autoritativních DNS serverů
+  * po stanovenou dobu (definovanou pomocí parametru TTL) má záznamy uloženy v cache,
+    aby mohl odpovídat klientům rychleji a šetřil zatížení serverů autoritativních
+  * server obvykle provozuje ISP (poskytovatel připojení k internetu)
+  * serverů může být na klientu definováno více na různých IP adresách
+
+======Překlad symbolického jména na IP adresu======
+Obrazek!
+1. klient se dotáže nejbližšího DNS serveru (např. DNS server poskytovatele připojení)
+2. DNS server zná odpověď (tzn., že počítač buď leží v doméně tohoto serveru nebo má odpověď uloženou ve vyrovnávací paměti), předá ji klientovi
+3. DNS server nezná odpověď, pak existují dvě možnosti:
+  * server odkáže klienta na DNS server, který je výše v hierarchii (v doméně nižšího řádu) - nerekurzivní metoda
+  * pokusí se sám najít IP adresu - rekurzivní metoda
+
+zdroj: cs.wikipedia.org
+======Reverzní překlad======
+  * kromě přímého překladu (symbolické jméno na IP adresu) poskytují DNS servery také zpětný překlad (IP adresa na symbolické jméno)
+  * při vkládání dat pro zpětné dotazy bylo ale třeba vyřešit problém s opačným uspořádáním IP adresy a doménového jména.
+  * tento nesoulad řeší DNS tak, že při reverzních dotazech obrací pořadí bajtů v adrese.
+  * k obrácené adrese pak připojí doménu in-addr.arpa a výsledné „jméno“ pak vyhledává standardním postupem.
+
+======Aplikační vrstva======
+
+======Elektronická pošta======
+  * poštovní adresa jiri.zacpal@upol.cz
+  * princip:
+Odesilatel pomocí programu, který nazývá
+poštovní klient – MUA, napíše dopis, který MUA
+elektronicky předá poště – MTA, což je typicky
+systémový proces, který běží na poštovním
+serveru. Úkolem MTA je doručit dopis na poštu –
+MTA adresáta. K tomu je využíván protokol SMTP.
+Na MTA adresáta umístí program pro lokální
+doručování – Mail Delivery Agent (MDA), dopis
+do do adresátovy poštovní schránky (mailboxu),
+případně jej MDA může přímo automaticky
+zpracovávat (ukládat přílohy, odpovídat, spouštět
+různé aplikace pro zpracování apod.). Z poštovní
+schránky si jej adresát může kdykoliv vyzvednout.
+K tomu se nejčastěji požívají protokoly POP3 nebo IMAP.
+
+======World Wide Web======
+  * vlastnosti:
+  * hypertextový
+  * bezstavový
+  * je tvořen klientem – prohlížečem, který je nainstalován na uživatelově počítači, a serverem, což je počítač připojený k Internetu, na kterém jsou umístěny webové stránky
+  * komunikace mezi klientem a serverem probíhá pomocí HTTP (HyperText Transfer Protocol)
+  * každá webová stránka je určena svým URL:
+protokol:%%//%%přihlašovací_jméno:heslo@hostitel.doména:port/cesta
+http://phoenix.inf.upol.cz/~zacpalj/zp2.html
+
+zdroj: www.kosek.cz
+======Podrobnější informace======
+  * P. Příhoda: Počítačové sítě
+  * Andrew S. Tanenbauma Computer Networks.
+
+======Příště======
+  * Základy databázových systémů a zpracování dat
+  * Studijní texty:
+  * Connolly T., Begg C.: Database Systems. A Practical Approach to Design, Implementation and Management, 3rd edition.  Addison Wesley, 2002. [[isbn>0-201-70857-4]]
+  * Pokorný J.: Databázové systémy a jejich použití v informačních systémech. Academia, 1992. [[isbn>80-200-0177-8]]
+  * Hector Garcia-Molina, Jeffrey D. Ullman, Jennifer Widom: Database Systems:The Complete Book
